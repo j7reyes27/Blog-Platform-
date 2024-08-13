@@ -1,30 +1,17 @@
-import './Header.css';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import icon from '../assets/icon.png';
+import './Header.css'
+import {Link} from 'react-router-dom'
+import icon from '../assets/icon.png'
 
 const Header = () => {
-  // Safely parse the stored user data
-  const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    localStorage.removeItem('token'); // Remove the token if stored separately
-    setUser(null); // Clear the user state
-    window.location.href = '/'; // Redirect to the home page
-  };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+    window.location.href = '/';
+  }
 
   const avatar = user?.avatar ? user.avatar : icon;
+  //This line sets the avatar variable. If the user object exists and has an avatar property, it uses that. Otherwise, it falls back to the default icon image.
 
   return (
     <header className="header">
@@ -39,10 +26,11 @@ const Header = () => {
               <img src={avatar} alt="avatar" className="avatar" />
             </Link>
             <button onClick={handleLogout} className="btn btn-danger">Log Out</button>
-            <div className='edit-article'>
-              <Link to='/new-article' className='new-article-link'>New Article</Link>
-            </div>
+              <div className='edit-article'>
+              <Link to='/new-article' className='new-article-link'>New Article </Link>
+              </div>
           </div>
+          //user ? () : () we are using a if else 
         ) : (
           <div className="auth-buttons">
             <Link to="/sign-in" className="btn sign-in">Sign In</Link>
@@ -54,4 +42,6 @@ const Header = () => {
   );
 }
 
-export default Header;
+export default Header; 
+
+//create sign in and sign up pages. 

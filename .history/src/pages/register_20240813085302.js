@@ -8,22 +8,19 @@ const Register = () => {
 
     const onSubmit = async (data) => {
         const userData = { ...data, avatar: '' };
-    
+
         try {
             // Make a request to register the user
-            const response = await axios.post('https://api.realworld.io/api/users', {
+            const response = await axios.post('https://api.realworld.io/api', {
                 user: userData
             });
-    
-            // Get the user object from the response
-            const user = response.data.user;
-    
-            // Store the entire user object in localStorage
-            localStorage.setItem('user', JSON.stringify(user));
-    
-            // Optionally store the token separately
-            localStorage.setItem('token', user.token);
-    
+
+            // Assuming the response contains the JWT token
+            const token = response.data.user.token;
+
+            // Store the token in localStorage
+            localStorage.setItem('token', token);
+
             // Redirect to the homepage or another protected route
             window.location.href = '/';
         } catch (error) {
@@ -31,7 +28,6 @@ const Register = () => {
             // Handle the errors as needed
         }
     };
-    
 
 
     return(

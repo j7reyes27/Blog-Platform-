@@ -21,9 +21,6 @@ const Register = () => {
             // Store the entire user object in localStorage
             localStorage.setItem('user', JSON.stringify(user));
     
-            // Optionally store the token separately
-            localStorage.setItem('token', user.token);
-    
             // Redirect to the homepage or another protected route
             window.location.href = '/';
         } catch (error) {

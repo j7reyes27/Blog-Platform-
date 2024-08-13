@@ -1,26 +1,21 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import icon from '../assets/icon.png';
 
 const Header = () => {
-  // Safely parse the stored user data
-  const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    localStorage.removeItem('token'); // Remove the token if stored separately
     setUser(null); // Clear the user state
     window.location.href = '/'; // Redirect to the home page
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(storedUser);
     }
   }, []);
 
