@@ -1,0 +1,112 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.home-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.edit-article {
+  margin-right: 20px;
+}
+
+.new-article-link {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #28a745;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.new-article-link:hover {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info .profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-info span {
+  margin-right: 10px;
+  line-height: 40px;
+}
+
+.user-info .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.btn-danger {
+  padding: 8px 15px;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-danger:hover {
+  background-color: #e9ecef;
+  border-color: #d6d6d6;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-buttons .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.auth-buttons .sign-in {
+  background-color: transparent;
+  color: #000;
+  border: none;
+}
+
+.auth-buttons .sign-up {
+  background-color: transparent;
+  border: 1px solid #28a745;
+  color: #28a745;
+}
+
+.auth-buttons .btn:hover {
+  text-decoration: none;
+}

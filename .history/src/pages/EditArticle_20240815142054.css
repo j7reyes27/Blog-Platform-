@@ -1,0 +1,121 @@
+/* Ensure the page content is centered */
+.edit-article-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Ensures it's centered vertically */
+    padding-top: 20px; /* Adjust the top padding as needed to center under header */
+    background-color: #f8f9fa; /* Matches the background */
+  }
+  
+  /* Center the form in the page */
+  .edit-article-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-article-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-article-form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .edit-article-form input[type="text"],
+  .edit-article-form textarea {
+    margin-bottom: 16px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .edit-article-form textarea {
+    height: 200px;
+    resize: vertical;
+  }
+  
+  .tags-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .tag input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+  }
+  
+  .tag button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .tag button:hover {
+    background-color: darkred;
+  }
+  
+  .add-tag-input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .add-tag-input input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+  }
+  
+  .add-tag-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-tag-input button:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+  

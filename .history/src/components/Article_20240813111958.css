@@ -1,0 +1,64 @@
+.article-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .likes {
+    font-size: 1.2em;
+    color: #ff6b6b;
+  }
+  
+  .tags {
+    margin-top: 10px;
+  }
+  
+  .post-tag {
+    background-color: #eee;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 0.9em;
+  }
+  
+  .description {
+    margin: 20px 0;
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  .article-actions {
+    margin-top: 20px;
+  }
+  
+  .btn-edit, .btn-delete {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+  }
+  
+  .btn-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  

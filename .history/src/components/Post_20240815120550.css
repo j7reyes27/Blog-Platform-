@@ -1,0 +1,95 @@
+.post {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 940px;
+  margin: 20px auto;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-title-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.post-title-link {
+  text-decoration: none;
+}
+
+.post-title {
+  color: #007bff;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+.post-likes {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  color: #333333;
+}
+
+.like-icon {
+  color: #e0245e; /* Red color for the heart icon */
+  margin-right: 5px;
+}
+
+.like-count {
+  font-size: 1.2em;
+  color: #333333;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  color: #666666;
+}
+
+.author-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.post-tag {
+  background-color: #e9ecef;
+  color: #007bff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.post-description {
+  font-size: 1em;
+  color: #333333;
+  margin: 10px 0;
+}
