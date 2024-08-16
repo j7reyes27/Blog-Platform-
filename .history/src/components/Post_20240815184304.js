@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Post.css';
@@ -6,69 +6,41 @@ import './Post.css';
 const Post = ({ article }) => {
     const [isFavorited, setIsFavorited] = useState(article.favorited);
     const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
-    const token = localStorage.getItem('token');
-
-useEffect(() => {
-    const fetchArticle = async () => {
-        try {
-            const response = await axios.get(`https://api.realworld.io/api/articles/${article.slug}`, {
-                headers: {
-                    Authorization: `Token ${token}`,
-                },
-            });
-            const updatedArticle = response.data.article;
-            setIsFavorited(updatedArticle.favorited);
-            setFavoritesCount(updatedArticle.favoritesCount);
-        } catch (error) {
-            console.error('Error fetching article data:', error);
-        }
-    };
-
-    if (token) {
-        fetchArticle();
-    } else {
-        setIsFavorited(article.favorited);
-        setFavoritesCount(article.favoritesCount);
-    }
-}, [article.slug, token, article.favorited, article.favoritesCount]);  
-
 
     const handleFavoriteClick = async () => {
+        const token = localStorage.getItem('token');
         if (!token) {
             alert('You need to be logged in to favorite articles.');
             return;
         }
-    
+
         try {
             let response;
             if (isFavorited) {
+                // Unfavorite the article
                 response = await axios.delete(`https://api.realworld.io/api/articles/${article.slug}/favorite`, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },
                 });
+                setIsFavorited(false);
+                setFavoritesCount(favoritesCount - 1);
             } else {
+                // Favorite the article
                 response = await axios.post(`https://api.realworld.io/api/articles/${article.slug}/favorite`, {}, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },
                 });
+                setIsFavorited(true);
+                setFavoritesCount(favoritesCount + 1);
             }
-    
-            if (response.status === 200) {
-                
-                setIsFavorited(response.data.article.favorited);
-                setFavoritesCount(response.data.article.favoritesCount);
-            } else {
-                console.error('Unexpected response:', response);
-            }
-    
+            console.log('Favorite response:', response.data); // Log the response data
         } catch (error) {
-            console.error('Error favoriting/unfavoriting article:', error.response || error.message);
+            console.error('Error favoriting/unfavoriting article:', error);
         }
     };
-    
-    
+
     return (
         <div className='post'>
             <div className='post-header'>

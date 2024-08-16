@@ -11,7 +11,7 @@ const Home = () => {
 
   const fetchArticles = async (page) => {
     setLoading(true);
-    setError(null);  
+    setError(null);  // Reset error before fetching
     try {
       const response = await fetch(`https://api.realworld.io/api/articles?limit=5&offset=${(page - 1) * 5}`);
       const data = await response.json();

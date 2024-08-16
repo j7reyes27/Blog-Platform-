@@ -7,31 +7,32 @@ const Post = ({ article }) => {
     const [isFavorited, setIsFavorited] = useState(article.favorited);
     const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
     const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
 
-useEffect(() => {
-    const fetchArticle = async () => {
-        try {
-            const response = await axios.get(`https://api.realworld.io/api/articles/${article.slug}`, {
-                headers: {
-                    Authorization: `Token ${token}`,
-                },
-            });
-            const updatedArticle = response.data.article;
-            setIsFavorited(updatedArticle.favorited);
-            setFavoritesCount(updatedArticle.favoritesCount);
-        } catch (error) {
-            console.error('Error fetching article data:', error);
+    useEffect(() => {
+        const fetchArticle = async () => {
+            try {
+                const response = await axios.get(`https://api.realworld.io/api/articles/${article.slug}`, {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                });
+                const updatedArticle = response.data.article;
+                setIsFavorited(updatedArticle.favorited);
+                setFavoritesCount(updatedArticle.favoritesCount);
+            } catch (error) {
+                console.error('Error fetching article data:', error);
+            }
+        };
+
+        if (token) {
+            fetchArticle();
+        } else {
+            // If no token, fallback to initial article data from props
+            setIsFavorited(article.favorited);
+            setFavoritesCount(article.favoritesCount);
         }
-    };
-
-    if (token) {
-        fetchArticle();
-    } else {
-        setIsFavorited(article.favorited);
-        setFavoritesCount(article.favoritesCount);
-    }
-}, [article.slug, token, article.favorited, article.favoritesCount]);  
-
+    }, [article.slug, token]);
 
     const handleFavoriteClick = async () => {
         if (!token) {
@@ -56,7 +57,7 @@ useEffect(() => {
             }
     
             if (response.status === 200) {
-                
+                // Only update state if the backend confirms the action
                 setIsFavorited(response.data.article.favorited);
                 setFavoritesCount(response.data.article.favoritesCount);
             } else {

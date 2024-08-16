@@ -21,13 +21,15 @@
 .post-title-container {
   display: flex;
   align-items: center;
-  width: 600PX;
-
+  justify-content: space-between; /* Ensure proper space distribution */
+  width: 100%; /* Make sure the container takes full width */
 }
 
 .post-title-link {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allow the title to take up the remaining space */
   text-decoration: none;
-  width: 600px;
 }
 
 .post-title {
@@ -35,15 +37,17 @@
   margin: 0;
   font-size: 1.5em;
   font-weight: normal;
+  flex-grow: 1; /* Allow the title to grow and take space */
+  margin-right: 10px; /* Provide some space between title and likes */
 }
 
 .post-likes {
   display: flex;
-  align-self: start;
   align-items: center;
-  font-size: 1.2em;
+  font-size: 1em; /* Adjust font size for proper scaling */
   color: #333333;
-  cursor: pointer; 
+  margin-left: 10px; /* Add margin to separate from the title */
+  cursor: pointer; /* Add cursor pointer to indicate it's clickable */
 }
 
 .like-icon {
@@ -55,12 +59,12 @@
 }
 
 .like-icon.liked {
-  color: #e0245e; 
-  -webkit-text-stroke-width: 0;
+  color: #e0245e; /* Red heart when liked */
+  -webkit-text-stroke-width: 0; /* Remove stroke when liked */
 }
 
 .like-count {
-  font-size: 1.2em;
+  font-size: 1em; /* Adjusted font size to be consistent */
   color: #333333;
 }
 
@@ -84,6 +88,12 @@
   align-items: flex-start;
 }
 
+.post-description {
+  font-size: 1em;
+  color: #333333;
+  margin: 10px 0;
+}
+
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -97,10 +107,4 @@
   border-radius: 3px;
   margin-right: 5px;
   margin-bottom: 5px;
-}
-
-.post-description {
-  font-size: 1em;
-  color: #333333;
-  margin: 10px 0;
 }

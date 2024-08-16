@@ -8,36 +8,40 @@ const Post = ({ article }) => {
     const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
     const token = localStorage.getItem('token');
 
-useEffect(() => {
-    const fetchArticle = async () => {
-        try {
-            const response = await axios.get(`https://api.realworld.io/api/articles/${article.slug}`, {
-                headers: {
-                    Authorization: `Token ${token}`,
-                },
-            });
-            const updatedArticle = response.data.article;
-            setIsFavorited(updatedArticle.favorited);
-            setFavoritesCount(updatedArticle.favoritesCount);
-        } catch (error) {
-            console.error('Error fetching article data:', error);
+    useEffect(() => {
+        const fetchArticle = async () => {
+            try {
+                const response = await axios.get(`https://api.realworld.io/api/articles/${article.slug}`, {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                });
+                const updatedArticle = response.data.article;
+                setIsFavorited(updatedArticle.favorited);
+                setFavoritesCount(updatedArticle.favoritesCount);
+            } catch (error) {
+                console.error('Error fetching article data:', error);
+            }
+        };
+    
+        if (token) {
+            fetchArticle();
+        } else {
+            setIsFavorited(article.favorited);
+            setFavoritesCount(article.favoritesCount);
         }
-    };
-
-    if (token) {
-        fetchArticle();
-    } else {
-        setIsFavorited(article.favorited);
-        setFavoritesCount(article.favoritesCount);
-    }
-}, [article.slug, token, article.favorited, article.favoritesCount]);  
-
+    }, [article.slug, token, article.favorited, article.favoritesCount]);  // Add 'article.favorited' and 'article.favoritesCount' to the dependency array
+    
 
     const handleFavoriteClick = async () => {
         if (!token) {
             alert('You need to be logged in to favorite articles.');
             return;
         }
+    
+        // Optimistic UI update
+        setIsFavorited(!isFavorited);
+        setFavoritesCount(isFavorited ? favoritesCount - 1 : favoritesCount + 1);
     
         try {
             let response;
@@ -56,17 +60,24 @@ useEffect(() => {
             }
     
             if (response.status === 200) {
-                
+                // Sync UI with server response
                 setIsFavorited(response.data.article.favorited);
                 setFavoritesCount(response.data.article.favoritesCount);
             } else {
                 console.error('Unexpected response:', response);
+                // Revert UI change if the request was not successful
+                setIsFavorited(isFavorited);
+                setFavoritesCount(isFavorited ? favoritesCount + 1 : favoritesCount - 1);
             }
     
         } catch (error) {
             console.error('Error favoriting/unfavoriting article:', error.response || error.message);
+            // Revert UI change in case of error
+            setIsFavorited(isFavorited);
+            setFavoritesCount(isFavorited ? favoritesCount + 1 : favoritesCount - 1);
         }
     };
+    
     
     
     return (

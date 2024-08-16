@@ -30,7 +30,7 @@ useEffect(() => {
         setIsFavorited(article.favorited);
         setFavoritesCount(article.favoritesCount);
     }
-}, [article.slug, token, article.favorited, article.favoritesCount]);  
+}, [article.slug, token, article.favorited, article.favoritesCount]);  // Add 'article.favorited' and 'article.favoritesCount' to the dependency array
 
 
     const handleFavoriteClick = async () => {
@@ -56,7 +56,7 @@ useEffect(() => {
             }
     
             if (response.status === 200) {
-                
+                // Only update state if the backend confirms the action
                 setIsFavorited(response.data.article.favorited);
                 setFavoritesCount(response.data.article.favoritesCount);
             } else {

@@ -21,13 +21,12 @@
 .post-title-container {
   display: flex;
   align-items: center;
-  width: 600PX;
-
+  margin-right: 10px;
+  max-width: 600PX;
 }
 
 .post-title-link {
   text-decoration: none;
-  width: 600px;
 }
 
 .post-title {
@@ -35,15 +34,15 @@
   margin: 0;
   font-size: 1.5em;
   font-weight: normal;
+  margin-right: 10px;
 }
 
 .post-likes {
   display: flex;
-  align-self: start;
   align-items: center;
   font-size: 1.2em;
   color: #333333;
-  cursor: pointer; 
+  cursor: pointer; /* Add cursor pointer to indicate it's clickable */
 }
 
 .like-icon {
@@ -55,8 +54,8 @@
 }
 
 .like-icon.liked {
-  color: #e0245e; 
-  -webkit-text-stroke-width: 0;
+  color: #e0245e; /* Red heart when liked */
+  -webkit-text-stroke-width: 0; /* Remove stroke when liked */
 }
 
 .like-count {
