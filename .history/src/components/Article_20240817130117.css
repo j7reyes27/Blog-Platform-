@@ -1,0 +1,112 @@
+.article-container {
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #fff;
+  max-width: 75%;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article-title-likes {
+  display: flex;
+  align-items: center;
+}
+
+.article-title-likes h1 {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.article-likes {
+  display: flex;
+  align-items: center;
+}
+
+.like-icon {
+  font-size: 1.5em;
+  color: #ccc;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: color 0.3s ease;
+}
+
+.like-icon.liked {
+  color: #e0245e;
+}
+
+.like-count {
+  font-size: 1em;
+  color: #888;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+}
+
+.author-details {
+  margin-right: 10px;
+}
+
+.author-avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.article-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.tags-description {
+  margin-top: 15px;
+}
+
+.tags {
+  margin-bottom: 10px;
+}
+
+.post-tag {
+  background-color: #e1e4e8;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 0.8em;
+}
+
+.description {
+  color: #666;
+  font-style: italic;
+  max-width: 75%;
+}
+
+.article-body {
+  line-height: 1.6;
+  margin-top: 15px;
+}

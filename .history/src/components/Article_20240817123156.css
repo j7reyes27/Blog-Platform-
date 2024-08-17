@@ -1,0 +1,101 @@
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%; /* Ensure the header doesn't exceed the width of its container */
+}
+
+.article-title-likes {
+  display: flex;
+  align-items: center;
+  flex-shrink: 1; /* Prevents the title and likes from stretching */
+}
+
+h1 {
+  margin-right: 15px; /* Space between title and likes */
+  font-size: 2em;
+  font-weight: bold;
+  flex-shrink: 1; /* Prevents the title from stretching */
+  white-space: nowrap; /* Prevents the title from breaking into multiple lines */
+}
+
+.likes {
+  font-size: 1.2em;
+  color: #ff6b6b;
+  margin-right: 20px; /* Space between likes and profile picture */
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  flex-shrink: 1; /* Prevents the author info from stretching */
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 10px; /* Space between text and avatar */
+  order: 1; /* Ensure this appears before the avatar */
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  order: 2; /* Ensure the avatar appears after the text */
+}
+
+.article-meta {
+  justify-content: flex-start;
+}
+
+.article-date {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.description {
+  margin: 20px 0;
+  font-size: 1.1em;
+  color: #555;
+  max-width: 600px; /* Limit the width of the description */
+}
+
+.article-body {
+  margin: 20px 0;
+  font-size: 1.1em;
+  color: #333;
+  line-height: 1.6;
+  white-space: pre-wrap; /* Corrects the display of line breaks */
+}
+
+.article-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-edit, .btn-delete {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}

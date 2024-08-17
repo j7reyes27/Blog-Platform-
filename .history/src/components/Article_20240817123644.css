@@ -1,0 +1,118 @@
+.article-container {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  max-width: 900px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.article-title-likes {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  color: #3498db; /* Blue color */
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.likes {
+  font-size: 1em;
+  color: #ff6b6b;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.article-meta {
+  justify-content: flex-start;
+}
+
+.article-date {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.description {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.tags {
+  margin-bottom: 15px;
+}
+
+.post-tag {
+  background-color: #eee;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 0.8em;
+  display: inline-block;
+}
+
+.article-body {
+  margin: 20px 0;
+  font-size: 1em;
+  color: #333;
+  line-height: 1.6;
+}
+
+.article-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-edit, .btn-delete {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
