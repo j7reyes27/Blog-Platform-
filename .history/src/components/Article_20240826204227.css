@@ -1,0 +1,106 @@
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align the title and author info to the top */
+  position: relative;
+}
+
+.article-title-likes {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Make the title section take up available space */
+  margin-right: 20px; /* Add space between the title and the author info */
+}
+
+.article-title-likes h1 {
+  font-size: 1.5em;
+  margin-right: 10px;
+  color: #007bff;
+  margin-bottom: 0;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.author-avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px; /* Space between avatar and name */
+}
+
+.author-details {
+  text-align: center;
+}
+
+.article-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.tags-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align the description and buttons to the top */
+  margin-top: 10px;
+}
+
+.tags {
+  flex: 1; /* Make the tags section take up available space */
+  margin-right: 20px; /* Add space between the tags and the description */
+}
+
+.description {
+  color: #666;
+  max-width: 75%;
+  opacity: .8;
+  margin-bottom: 0;
+}
+
+.article-container {
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #fff;
+  max-width: 75%;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.post-tag {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+.article-body {
+  line-height: 1.6;
+  margin-top: 15px;
+}

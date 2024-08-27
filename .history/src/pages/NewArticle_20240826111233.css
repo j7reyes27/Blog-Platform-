@@ -1,0 +1,122 @@
+.new-article-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-article-container h2 {
+  text-align: center;
+}
+
+.new-article-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-article-form label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.new-article-form input[type="text"],
+.new-article-form textarea {
+  margin-bottom: 16px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.new-article-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+.tags-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  max-width: 50%; /* Ensures the tag container doesn't exceed form width */
+}
+
+.tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure tag occupies the available width */
+}
+
+.tag span {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 8px;
+  width: 50%;
+}
+
+.delete-tag {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent button from wrapping */
+  width: 0%;
+  height: 30px;
+}
+
+.delete-tag:hover {
+  background-color: darkred;
+  color: white;
+}
+
+.tag-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure container occupies the available width */
+}
+
+.tag-input-container input[type="text"] {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 0;
+  width: 50%;
+}
+
+.add-tag {
+  background-color: white;
+  color: rgb(38, 176, 240);
+  border: 2px solid rgb(38, 176, 240);
+  padding: 4px 8px; /* Adjust padding for consistency */
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent button from wrapping */
+  width: 30%;
+  height: 100%;
+}
+
+.add-tag:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  max-width: 40%;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
