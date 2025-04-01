@@ -10,7 +10,7 @@ const Article = ({ article }) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
 
-  // Use local state for like data
+  // Add like state management
   const [isFavorited, setIsFavorited] = useState(article.favorited);
   const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -35,9 +35,9 @@ const Article = ({ article }) => {
         );
       }
       if (response.status === 200) {
-        const updatedArticle = response.data.article;
-        setIsFavorited(updatedArticle.favorited);
-        setFavoritesCount(updatedArticle.favoritesCount);
+        // Toggle like state immediately
+        setIsFavorited(prev => !prev);
+        setFavoritesCount(prev => (isFavorited ? prev - 1 : prev + 1));
       } else {
         console.error('Unexpected response:', response);
       }
@@ -70,7 +70,7 @@ const Article = ({ article }) => {
       <div className="article-header">
         <div className="article-title-likes">
           <h1>{article.title}</h1>
-          {/* Heart icon now uses the same class as in Post.js */}
+          {/* Make the heart clickable to update like state */}
           <div className="article-likes" onClick={handleFavoriteClick}>
             <span className={`like-icon ${isFavorited ? 'liked' : ''}`}>&#10084;</span>
             <span className="like-count">{favoritesCount}</span>
@@ -83,6 +83,7 @@ const Article = ({ article }) => {
             <p className="article-date">{new Date(article.createdAt).toLocaleDateString()}</p>
           </div>
           <img
+            // Use a dynamic placeholder based on the username if no image is provided
             src={article.author.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`}
             alt={article.author.username}
             className="author-avatar"
@@ -92,13 +93,9 @@ const Article = ({ article }) => {
 
       <div className="tags-description">
         <div className="tags">
-          {article.tagList && article.tagList.length > 0 ? (
-            article.tagList.map((tag, index) => (
-              <span key={index} className="post-tag">{tag}</span>
-            ))
-          ) : (
-            <span className="post-tag placeholder-tag">No tags</span>
-          )}
+          {article.tagList.map((tag, index) => (
+            <span key={index} className="post-tag">{tag}</span>
+          ))}
         </div>
 
         <div className="description">

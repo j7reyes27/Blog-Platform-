@@ -8,48 +8,15 @@ import './Article.css';
 const Article = ({ article }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  const token = localStorage.getItem('token');
-
-  // Use local state for like data
-  const [isFavorited, setIsFavorited] = useState(article.favorited);
-  const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const handleFavoriteClick = async () => {
-    if (!token) {
-      alert('You need to be logged in to favorite articles.');
-      return;
-    }
-    try {
-      let response;
-      if (isFavorited) {
-        response = await axios.delete(
-          `https://realworld.habsidev.com/api/articles/${article.slug}/favorite`,
-          { headers: { Authorization: `Token ${token}` } }
-        );
-      } else {
-        response = await axios.post(
-          `https://realworld.habsidev.com/api/articles/${article.slug}/favorite`,
-          {},
-          { headers: { Authorization: `Token ${token}` } }
-        );
-      }
-      if (response.status === 200) {
-        const updatedArticle = response.data.article;
-        setIsFavorited(updatedArticle.favorited);
-        setFavoritesCount(updatedArticle.favoritesCount);
-      } else {
-        console.error('Unexpected response:', response);
-      }
-    } catch (error) {
-      console.error('Error favoriting/unfavoriting article:', error.response || error.message);
-    }
-  };
-
   const handleDelete = async () => {
+    const token = localStorage.getItem('token');
     try {
       await axios.delete(`https://realworld.habsidev.com/api/articles/${article.slug}`, {
-        headers: { Authorization: `Token ${token}` },
+        headers: {
+          Authorization: `Token ${token}`,
+        },
       });
       navigate('/');
     } catch (error) {
@@ -70,10 +37,9 @@ const Article = ({ article }) => {
       <div className="article-header">
         <div className="article-title-likes">
           <h1>{article.title}</h1>
-          {/* Heart icon now uses the same class as in Post.js */}
-          <div className="article-likes" onClick={handleFavoriteClick}>
-            <span className={`like-icon ${isFavorited ? 'liked' : ''}`}>&#10084;</span>
-            <span className="like-count">{favoritesCount}</span>
+          <div className="article-likes">
+            <span className={`like-icon ${article.favorited ? 'liked' : ''}`}>&#10084;</span>
+            <span className="like-count">{article.favoritesCount}</span>
           </div>
         </div>
 
@@ -83,7 +49,7 @@ const Article = ({ article }) => {
             <p className="article-date">{new Date(article.createdAt).toLocaleDateString()}</p>
           </div>
           <img
-            src={article.author.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`}
+            src={article.author.image || 'https://via.placeholder.com/50'}
             alt={article.author.username}
             className="author-avatar"
           />
@@ -92,13 +58,9 @@ const Article = ({ article }) => {
 
       <div className="tags-description">
         <div className="tags">
-          {article.tagList && article.tagList.length > 0 ? (
-            article.tagList.map((tag, index) => (
-              <span key={index} className="post-tag">{tag}</span>
-            ))
-          ) : (
-            <span className="post-tag placeholder-tag">No tags</span>
-          )}
+          {article.tagList.map((tag, index) => (
+            <span key={index} className="post-tag">{tag}</span>
+          ))}
         </div>
 
         <div className="description">
@@ -107,8 +69,12 @@ const Article = ({ article }) => {
           </div>
           {user && user.username === article.author.username && (
             <div className="article-actions">
-              <button onClick={handleEdit} className="btn-edit">Edit</button>
-              <button onClick={toggleTooltip} className="btn-delete">Delete</button>
+              <button onClick={handleEdit} className="btn-edit">
+                Edit
+              </button>
+              <button onClick={toggleTooltip} className="btn-delete">
+                Delete
+              </button>
               {showTooltip && (
                 <div className="tooltip">
                   <p>Are you sure you want to delete this article?</p>

@@ -1,56 +1,18 @@
 import React, { useState } from 'react';
+import api from '../api';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import './Article.css';
 
 const Article = ({ article }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  const token = localStorage.getItem('token');
-
-  // Use local state for like data
-  const [isFavorited, setIsFavorited] = useState(article.favorited);
-  const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const [showTooltip, setShowTooltip] = useState(false);
-
-  const handleFavoriteClick = async () => {
-    if (!token) {
-      alert('You need to be logged in to favorite articles.');
-      return;
-    }
-    try {
-      let response;
-      if (isFavorited) {
-        response = await axios.delete(
-          `https://realworld.habsidev.com/api/articles/${article.slug}/favorite`,
-          { headers: { Authorization: `Token ${token}` } }
-        );
-      } else {
-        response = await axios.post(
-          `https://realworld.habsidev.com/api/articles/${article.slug}/favorite`,
-          {},
-          { headers: { Authorization: `Token ${token}` } }
-        );
-      }
-      if (response.status === 200) {
-        const updatedArticle = response.data.article;
-        setIsFavorited(updatedArticle.favorited);
-        setFavoritesCount(updatedArticle.favoritesCount);
-      } else {
-        console.error('Unexpected response:', response);
-      }
-    } catch (error) {
-      console.error('Error favoriting/unfavoriting article:', error.response || error.message);
-    }
-  };
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://realworld.habsidev.com/api/articles/${article.slug}`, {
-        headers: { Authorization: `Token ${token}` },
-      });
+      await api.delete(`/articles/${article.slug}`);
       navigate('/');
     } catch (error) {
       console.error('Error deleting article:', error);
@@ -65,15 +27,24 @@ const Article = ({ article }) => {
     setShowTooltip(!showTooltip);
   };
 
+  <img
+  src={article.author.image || '/images/default-avatar.png'}
+  alt={article.author.username}
+  className="author-avatar"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = '/images/default-avatar.png';
+  }}
+/>
+
   return (
     <div className="article-container">
       <div className="article-header">
         <div className="article-title-likes">
           <h1>{article.title}</h1>
-          {/* Heart icon now uses the same class as in Post.js */}
-          <div className="article-likes" onClick={handleFavoriteClick}>
-            <span className={`like-icon ${isFavorited ? 'liked' : ''}`}>&#10084;</span>
-            <span className="like-count">{favoritesCount}</span>
+          <div className="article-likes">
+            <span className={`like-icon ${article.favorited ? 'liked' : ''}`}>&#10084;</span>
+            <span className="like-count">{article.favoritesCount}</span>
           </div>
         </div>
 
@@ -83,9 +54,13 @@ const Article = ({ article }) => {
             <p className="article-date">{new Date(article.createdAt).toLocaleDateString()}</p>
           </div>
           <img
-            src={article.author.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`}
+            src={article.author.image || '/images/default-avatar.png'}
             alt={article.author.username}
             className="author-avatar"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/images/default-avatar.png';
+            }}
           />
         </div>
       </div>
@@ -97,7 +72,7 @@ const Article = ({ article }) => {
               <span key={index} className="post-tag">{tag}</span>
             ))
           ) : (
-            <span className="post-tag placeholder-tag">No tags</span>
+            <span className="no-tags-message">No tags</span>
           )}
         </div>
 
@@ -135,7 +110,7 @@ Article.propTypes = {
     slug: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     favoritesCount: PropTypes.number.isRequired,
-    tagList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    tagList: PropTypes.arrayOf(PropTypes.string),
     description: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     author: PropTypes.shape({

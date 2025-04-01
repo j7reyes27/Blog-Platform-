@@ -116,21 +116,13 @@
   gap: 10px;
   justify-content: flex-end;
 }
+
 .article-body {
   line-height: 1.6;
   margin-top: 15px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  +  word-wrap: break-word;
++  overflow-wrap: break-word;
 }
-
-/* Add styles for code blocks */
-.article-body pre,
-.article-body code {
-  white-space: pre-wrap;      /* Allows long lines to wrap */
-  word-break: break-all;       /* Breaks long words if needed */
-  font-family: inherit;        /* Use the same font as the article body */
-}
-
 
 
 .tooltip {

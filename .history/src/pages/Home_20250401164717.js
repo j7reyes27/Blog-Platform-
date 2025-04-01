@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import ArticleList from '../components/ArticleList';
 import Pagination from '../components/Pagination';
 
 const Home = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const query = new URLSearchParams(location.search);
-  const initialPage = Number(query.get('page')) || 1;
-
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
   const fetchArticles = async (page) => {
@@ -27,8 +21,6 @@ const Home = () => {
       setArticles(Array.isArray(data.articles) ? data.articles : []);
       setTotalPages(Math.ceil(data.articlesCount / 5));
       setCurrentPage(page);
-      // Update URL with the current page number so it persists
-      navigate(`/?page=${page}`, { replace: true });
     } catch (err) {
       setError('Failed to fetch articles. Please try again later.');
       setArticles([]);
@@ -55,7 +47,11 @@ const Home = () => {
       ) : (
         <>
           <ArticleList articles={articles} />
-          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </>
       )}
     </div>

@@ -29,9 +29,9 @@ const Post = ({ article }) => {
         );
       }
       if (response.status === 200) {
-        const updatedArticle = response.data.article;
-        setIsFavorited(updatedArticle.favorited);
-        setFavoritesCount(updatedArticle.favoritesCount);
+        // Manually toggle the like state since the API response isn't updating "favorited"
+        setIsFavorited(prev => !prev);
+        setFavoritesCount(prev => (isFavorited ? prev - 1 : prev + 1));
       } else {
         console.error('Unexpected response:', response);
       }
@@ -54,7 +54,7 @@ const Post = ({ article }) => {
         </div>
         <div className='post-meta'>
           <img
-            src={article.author.image || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(article.author.username)}
+            src={article.author.image || 'https://ui-avatars.com/api/?name=John+Doe'}
             alt={article.author.username}
             className='author-image'
           />
@@ -65,13 +65,9 @@ const Post = ({ article }) => {
         </div>
       </div>
       <div className="post-tags">
-        {article.tagList && article.tagList.length > 0 ? (
-          article.tagList.map((tag, index) => (
-            <span key={index} className="post-tag">{tag}</span>
-          ))
-        ) : (
-          <span className="post-tag placeholder-tag">No tags</span>
-        )}
+        {article.tagList.map((tag, index) => (
+          <span key={index} className="post-tag">{tag}</span>
+        ))}
       </div>
       <p className='post-description'>{article.description}</p>
     </div>
