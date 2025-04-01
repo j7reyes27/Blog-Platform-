@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import icon from '../assets/icon.png';
 
 const Header = () => {
-  const navigate = useNavigate();
-  
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
@@ -27,18 +25,14 @@ const Header = () => {
 
   const avatar = user?.avatar ? user.avatar : icon;
 
-  const handleHomeClick = (e) => {
-    e.preventDefault();
-    // Use navigate with replace to clear any existing query parameters,
-    // then force a full reload of the home page so it starts at page 1.
-    navigate("/", { replace: true });
-    window.location.reload();
-  };
-
   return (
     <header className="header">
       <h1>
-        <Link to="/" onClick={handleHomeClick} className="home-link">
+        <Link
+          to="/"
+          onClick={() => window.history.replaceState({}, '', '/')}
+          className="home-link"
+        >
           Realworld Blog
         </Link>
       </h1>
@@ -65,6 +59,6 @@ const Header = () => {
       </nav>
     </header>
   );
-};
+}
 
 export default Header;

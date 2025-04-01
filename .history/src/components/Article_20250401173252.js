@@ -9,16 +9,8 @@ const Article = ({ article }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
 
-  // Determine the avatar for the article author.
-  const authorAvatar =
-    article.author.image ||
-    (loggedInUser &&
-      loggedInUser.username === article.author.username &&
-      loggedInUser.avatar) ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`;
-
+  // Use local state for like data (without an additional useEffect here).
   const [isFavorited, setIsFavorited] = useState(article.favorited);
   const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -85,9 +77,18 @@ const Article = ({ article }) => {
         <div className="author-info">
           <div className="author-details">
             <p>{article.author.username}</p>
-            <p className="article-date">{new Date(article.createdAt).toLocaleDateString()}</p>
+            <p className="article-date">
+              {new Date(article.createdAt).toLocaleDateString()}
+            </p>
           </div>
-          <img src={authorAvatar} alt={article.author.username} className="author-avatar" />
+          <img
+            src={
+              article.author.image ||
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`
+            }
+            alt={article.author.username}
+            className="author-avatar"
+          />
         </div>
       </div>
       <div className="tags-description">

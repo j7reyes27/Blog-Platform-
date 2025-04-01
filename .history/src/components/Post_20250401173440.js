@@ -8,14 +8,6 @@ const Post = ({ article }) => {
   const [isFavorited, setIsFavorited] = useState(article.favorited);
   const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const token = localStorage.getItem('token');
-  const loggedInUser = JSON.parse(localStorage.getItem('user'));
-
-  const authorAvatar =
-    article.author.image ||
-    (loggedInUser &&
-      loggedInUser.username === article.author.username &&
-      loggedInUser.avatar) ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`;
 
   // Fetch the latest like state so that the like system persists correctly.
   useEffect(() => {
@@ -89,24 +81,33 @@ const Post = ({ article }) => {
           </div>
         </div>
         <div className="post-meta">
-          <img src={authorAvatar} alt={article.author.username} className="author-image" />
+          <img
+            src={
+              article.author.image ||
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.username)}`
+            }
+            alt={article.author.username}
+            className="author-image"
+          />
           <div className="author-info">
             <span className="post-author">{article.author.username}</span>
-            <span className="post-date">{new Date(article.createdAt).toLocaleDateString()}</span>
+            <span className="post-date">
+              {new Date(article.createdAt).toLocaleDateString()}
+            </span>
           </div>
         </div>
       </div>
       <div className="tags">
-        {article.tagList && article.tagList.length > 0 ? (
-          article.tagList.map((tag, index) => (
-            <span key={index} className="post-tag">
-              {tag}
-            </span>
-          ))
-        ) : (
-          <span className="post-tag placeholder-tag">No tags</span>
-        )}
-      </div>
+          {article.tagList && article.tagList.length > 0 ? (
+            article.tagList.map((tag, index) => (
+              <span key={index} className="post-tag">
+                {tag}
+              </span>
+            ))
+          ) : (
+            <span className="post-tag placeholder-tag">No tags</span>
+          )}
+        </div>
       <p className="post-description">{article.description}</p>
     </div>
   );

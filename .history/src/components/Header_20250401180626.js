@@ -15,7 +15,7 @@ const Header = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     setUser(null);
-    window.location.href = '/';
+    navigate('/');
   };
 
   useEffect(() => {
@@ -27,12 +27,10 @@ const Header = () => {
 
   const avatar = user?.avatar ? user.avatar : icon;
 
+  // When clicking "Realworld Blog", push a new history entry with the URL "/" (with no query params)
   const handleHomeClick = (e) => {
     e.preventDefault();
-    // Use navigate with replace to clear any existing query parameters,
-    // then force a full reload of the home page so it starts at page 1.
-    navigate("/", { replace: true });
-    window.location.reload();
+    navigate("/", { replace: false });
   };
 
   return (

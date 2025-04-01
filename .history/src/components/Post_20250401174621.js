@@ -10,6 +10,10 @@ const Post = ({ article }) => {
   const token = localStorage.getItem('token');
   const loggedInUser = JSON.parse(localStorage.getItem('user'));
 
+  // Determine the avatar to display:
+  // 1. Use article.author.image if available.
+  // 2. If the logged-in user is the author and has an avatar, use that.
+  // 3. Otherwise, fall back to a dynamically generated placeholder.
   const authorAvatar =
     article.author.image ||
     (loggedInUser &&
