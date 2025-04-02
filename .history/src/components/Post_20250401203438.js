@@ -64,6 +64,7 @@ const Post = ({ article }) => {
       }
 
       if (response.status === 200) {
+        // Update state based on the API response so that the like change persists.
         setIsFavorited(response.data.article.favorited);
         setFavoritesCount(response.data.article.favoritesCount);
       } else {

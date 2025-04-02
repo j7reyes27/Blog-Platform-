@@ -1,10 +1,15 @@
 .new-article-container {
-  max-width: 600px;
+  width: 60%;
   margin: 0 auto;
+  margin-top: 3%;
   padding: 20px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-article-container h2 {
+  text-align: center;
 }
 
 .new-article-form {
@@ -36,22 +41,23 @@
   flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
-  max-width: 100%; /* Ensures the tag container doesn't exceed form width */
+  max-width: 50%; 
 }
+
 
 .tag {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%; /* Ensure tag occupies the available width */
+  width: 100%; 
+  gap: 20px;
 }
 
 .tag span {
-  flex-grow: 1; /* Take up remaining space */
   padding: 5px 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
   margin-right: 8px;
+  width: 50%;
 }
 
 .delete-tag {
@@ -61,7 +67,9 @@
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
-  white-space: nowrap; /* Prevent button from wrapping */
+  white-space: nowrap; 
+  width: 20%;
+  height: 30px;
 }
 
 .delete-tag:hover {
@@ -69,29 +77,33 @@
   color: white;
 }
 
+
 .tag-input-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  width: 100%; /* Ensure container occupies the available width */
+  width: 100%; 
+  gap: 20px;
 }
 
 .tag-input-container input[type="text"] {
-  flex-grow: 1;
-  padding: 8px;
+  padding: 5px 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  margin-right: 8px;
+  margin-bottom: 0;
+  width: 50%;
 }
 
 .add-tag {
   background-color: white;
   color: rgb(38, 176, 240);
   border: 2px solid rgb(38, 176, 240);
-  padding: 4px 8px; /* Adjust padding for consistency */
+  padding: 4px 8px; 
   border-radius: 4px;
   cursor: pointer;
-  white-space: nowrap; /* Prevent button from wrapping */
+  white-space: nowrap; 
+  width: 20%;
+  height: 35px;
 }
 
 .add-tag:hover {
@@ -107,6 +119,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  max-width: 40%;
 }
 
 .btn-submit:hover {
